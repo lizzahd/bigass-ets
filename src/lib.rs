@@ -77,11 +77,31 @@ impl<'a> Assets<'a> {
         self
     }
 
-    pub fn get_tex(&self, name: &Arc::<str>) -> &Texture2D {
-        &self.textures.get(name).unwrap_or(&self.textures["missing"])
+    pub fn get_tex<T>(&self, name: T) -> &Texture2D
+    where T: Into<&'a str>
+    {
+        &self.textures.get(name.into())
+            .unwrap_or(&self.textures.get("missing").expect("Could not find texture"))
     }
 
-    pub fn get_tex_str(&self, name: &str) -> &Texture2D {
-        self.get_tex(&Arc::from(name))
+    pub fn get_model<T>(&self, name: T) -> &Model
+    where T: Into<&'a str>
+    {
+        &self.models.get(name.into())
+            .expect("Could not find model")
+    }
+
+    pub fn get_sound<T>(&self, name: T) -> &Sound<'_>
+    where T: Into<&'a str>
+    {
+        &self.sounds.get(name.into())
+            .expect("Could not find sound")
+    }
+
+    pub fn get_music<T>(&self, name: T) -> &Music<'_>
+    where T: Into<&'a str>
+    {
+        &self.music.get(name.into())
+            .expect("Could not find music")
     }
 }
