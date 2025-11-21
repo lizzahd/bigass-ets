@@ -96,35 +96,35 @@ impl<'a> Assets<'a> {
     pub fn get_tex<T>(&self, name: T) -> &Texture2D
     where T: AsRef<str>
     {
-        &self.textures.get(name.as_ref())
-            .unwrap_or(&self.textures.get("missing").expect("Could not find texture"))
+        self.textures.get(name.as_ref())
+            .unwrap_or(self.textures.get("missing").expect("Could not find texture"))
     }
 
     pub fn get_image<T>(&self, name: T) -> &Image
     where T: AsRef<str>
     {
-        &self.images.get(name.as_ref())
-            .unwrap_or(&self.images.get("missing").expect("Could not find image"))
+        self.images.get(name.as_ref())
+            .unwrap_or(self.images.get("missing").expect("Could not find image"))
     }
 
     pub fn get_model<T>(&self, name: T) -> &Model
     where T: AsRef<str>
     {
-        &self.models.get(name.as_ref())
+        self.models.get(name.as_ref())
             .expect("Could not find model")
     }
 
     pub fn get_sound<T>(&self, name: T) -> &Sound<'_>
     where T: AsRef<str>
     {
-        &self.sounds.get(name.as_ref())
+        self.sounds.get(name.as_ref())
             .expect("Could not find sound")
     }
 
     pub fn get_music<T>(&self, name: T) -> &Music<'_>
     where T: AsRef<str>
     {
-        &self.music.get(name.as_ref())
+        self.music.get(name.as_ref())
             .expect("Could not find music")
     }
 }
