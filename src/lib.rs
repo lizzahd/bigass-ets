@@ -100,7 +100,7 @@ impl<'a> Assets<'a> {
             .unwrap_or(&self.textures.get("missing").expect("Could not find texture"))
     }
 
-    pub fn get_images<T>(&self, name: T) -> &Image
+    pub fn get_image<T>(&self, name: T) -> &Image
     where T: AsRef<str>
     {
         &self.images.get(name.as_ref())
